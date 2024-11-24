@@ -28,7 +28,7 @@ const getAllCar = async (req: Request, res: Response) => {
 			);
 
 			if (result.length === 0) {
-				res.status(200).json({
+				res.status(404).json({
 					success: true,
 					message: "No Car Found",
 					data: result,
@@ -64,7 +64,7 @@ const findCar = async (req: Request, res: Response) => {
 		const result = await carService.findCar(carId);
 
 		if (result.length === 0) {
-			res.status(200).json({
+			res.status(404).json({
 				success: true,
 				message: "No Car Found!!!",
 				data: result,
