@@ -15,23 +15,43 @@ const order_model_1 = require("./order.model");
 const orderCar = (order) => __awaiter(void 0, void 0, void 0, function* () {
     const carDetails = yield car_model_1.CarModel.findById({ _id: order.car });
     if (!carDetails) {
-        return { message: "Car is not found" };
+        return {
+            status: false,
+            message: "Car is not found",
+            data: {},
+        };
     }
     else if (carDetails && !carDetails.inStock) {
-        return { message: "This Car is stock out" };
+        return {
+            status: false,
+            message: "This Car is stock out",
+            data: {},
+        };
     }
     else if (carDetails && carDetails.quantity < order.quantity) {
-        return { message: "Order quantity has excide stock quantity" };
+        return {
+            status: false,
+            message: "Order quantity has excide stock quantity",
+            data: {},
+        };
     }
     else if (carDetails.quantity - order.quantity == 0) {
         yield car_model_1.CarModel.findOneAndUpdate({ _id: order.car }, { quantity: carDetails.quantity - order.quantity, inStock: false }, { new: true });
         const result = yield order_model_1.OrderModel.create(order);
-        return result;
+        return {
+            status: true,
+            message: "Order created successfully",
+            data: result,
+        };
     }
     else {
         yield car_model_1.CarModel.findOneAndUpdate({ _id: order.car }, { quantity: carDetails.quantity - order.quantity }, { new: true });
         const result = yield order_model_1.OrderModel.create(order);
-        return result;
+        return {
+            status: true,
+            message: "Order created successfully",
+            data: result,
+        };
     }
 });
 const countRevenue = () => __awaiter(void 0, void 0, void 0, function* () {

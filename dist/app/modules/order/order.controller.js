@@ -15,11 +15,7 @@ const orderCar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const orderData = req.body;
         const result = yield order_service_1.orderService.orderCar(orderData);
-        res.status(200).json({
-            status: true,
-            message: "Order created successfully",
-            data: result,
-        });
+        res.status(200).json(result);
     }
     catch (error) {
         res.status(500).json({

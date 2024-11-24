@@ -15,6 +15,6 @@ app.use((0, cors_1.default)());
 app.use("/api/cars", car_route_1.CarRoute);
 app.use("/api/orders", order_route_1.OrderRoute);
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("Hello World 2.0!");
 });
 exports.default = app;

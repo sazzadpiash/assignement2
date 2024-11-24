@@ -33,11 +33,20 @@ const getAllCar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (req.query.searchTerm) {
             const result = yield car_service_1.carService.getAllQueryCar(req.query.searchTerm);
-            res.status(200).json({
-                success: true,
-                message: "Cars retrieved successfully",
-                data: result,
-            });
+            if (result.length === 0) {
+                res.status(200).json({
+                    success: true,
+                    message: "No Car Found",
+                    data: result,
+                });
+            }
+            else {
+                res.status(200).json({
+                    success: true,
+                    message: "Cars retrieved successfully",
+                    data: result,
+                });
+            }
         }
         else {
             const result = yield car_service_1.carService.getAllCar();
@@ -60,16 +69,25 @@ const findCar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { carId } = req.params;
         const result = yield car_service_1.carService.findCar(carId);
-        res.status(200).json({
-            success: true,
-            message: "Car retrieved successfully",
-            data: result,
-        });
+        if (result.length === 0) {
+            res.status(200).json({
+                success: true,
+                message: "No Car Found!!!",
+                data: result,
+            });
+        }
+        else {
+            res.status(200).json({
+                success: true,
+                message: "Car retrieved successfully",
+                data: result,
+            });
+        }
     }
     catch (error) {
         res.status(500).json({
             success: false,
-            message: "Car retrieved successfully",
+            message: "No Car Found!",
             error: error,
         });
     }
@@ -96,11 +114,11 @@ const updateCar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const deleteCar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { carId } = req.params;
-        const result = yield car_service_1.carService.deleteCar(carId);
+        yield car_service_1.carService.deleteCar(carId);
         res.status(200).json({
             status: true,
             message: "Car deleted successfully",
-            data: result,
+            data: {},
         });
     }
     catch (error) {
