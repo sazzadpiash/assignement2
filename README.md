@@ -32,13 +32,19 @@ A TypeScript-based Express application for managing a car store, using MongoDB w
 
 ## Endpoints
 
-Create a Car: POST /api/cars
-Get All Cars: GET /api/cars?searchTerm=<query>
-Get a Car by ID: GET /api/cars/:carId
-Update a Car: PUT /api/cars/:carId
-Delete a Car: DELETE /api/cars/:carId
-Create an Order: POST /api/orders
-Calculate Revenue: GET /api/orders/revenue
+Create a Car: POST /api/cars.
+
+Get All Cars: GET /api/cars?searchTerm=<query>.
+
+Get a Car by ID: GET /api/cars/:carId.
+
+Update a Car: PUT /api/cars/:carId.
+
+Delete a Car: DELETE /api/cars/:carId.
+
+Create an Order: POST /api/orders.
+
+Calculate Revenue: GET /api/orders/revenue.
 
 # Installation
 
