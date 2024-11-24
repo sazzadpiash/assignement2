@@ -27,11 +27,19 @@ const getAllCar = async (req: Request, res: Response) => {
 				req.query.searchTerm as string
 			);
 
-			res.status(200).json({
-				success: true,
-				message: "Cars retrieved successfully",
-				data: result,
-			});
+			if (result.length === 0) {
+				res.status(200).json({
+					success: true,
+					message: "No Car Found",
+					data: result,
+				});
+			} else {
+				res.status(200).json({
+					success: true,
+					message: "Cars retrieved successfully",
+					data: result,
+				});
+			}
 		} else {
 			const result = await carService.getAllCar();
 
@@ -55,15 +63,23 @@ const findCar = async (req: Request, res: Response) => {
 		const { carId } = req.params;
 		const result = await carService.findCar(carId);
 
-		res.status(200).json({
-			success: true,
-			message: "Car retrieved successfully",
-			data: result,
-		});
+		if (result.length === 0) {
+			res.status(200).json({
+				success: true,
+				message: "No Car Found!!!",
+				data: result,
+			});
+		} else {
+			res.status(200).json({
+				success: true,
+				message: "Car retrieved successfully",
+				data: result,
+			});
+		}
 	} catch (error) {
 		res.status(500).json({
 			success: false,
-			message: "Car retrieved successfully",
+			message: "No Car Found!",
 			error: error,
 		});
 	}
@@ -93,12 +109,12 @@ const updateCar = async (req: Request, res: Response) => {
 const deleteCar = async (req: Request, res: Response) => {
 	try {
 		const { carId } = req.params;
-		const result = await carService.deleteCar(carId);
+		await carService.deleteCar(carId);
 
 		res.status(200).json({
 			status: true,
 			message: "Car deleted successfully",
-			data: result,
+			data: {},
 		});
 	} catch (error) {
 		res.status(500).json({

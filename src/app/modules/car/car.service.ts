@@ -24,6 +24,7 @@ const getAllQueryCar = async (query: string) => {
 
 const findCar = async (carId: string) => {
 	const result = await CarModel.find({ _id: carId });
+
 	return result;
 };
 

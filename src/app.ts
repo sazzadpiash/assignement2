@@ -13,7 +13,7 @@ app.use("/api/cars", CarRoute);
 app.use("/api/orders", OrderRoute);
 
 app.get("/", (req, res) => {
-	res.send("Hello World!");
+	res.send("Hello World 2.0!");
 });
 
 export default app;

@@ -7,11 +7,7 @@ const orderCar = async (req: Request, res: Response) => {
 
 		const result = await orderService.orderCar(orderData);
 
-		res.status(200).json({
-			status: true,
-			message: "Order created successfully",
-			data: result,
-		});
+		res.status(200).json(result);
 	} catch (error) {
 		res.status(500).json({
 			success: false,
