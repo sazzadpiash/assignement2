@@ -34,7 +34,7 @@ A TypeScript-based Express application for managing a car store, using MongoDB w
 
 Create a Car: POST /api/cars.
 
-Get All Cars: GET /api/cars?searchTerm=<query>.
+Get All Cars: GET /api/cars?searchTerm=[Brand | Category | Model].
 
 Get a Car by ID: GET /api/cars/:carId.
 
